@@ -26,8 +26,13 @@ provider:
   environment:
     AWS_REGION: ${self:provider.region}
     DYNAMODB_TABLE_NAME: EcommerceData
-    RAZORPAY_TEST_KEY_ID: ${ssm:/falsenine/razorpay/keyId~true}
-    RAZORPAY_TEST_KEY_SECRET: ${ssm:/falsenine/razorpay/keySecret~true}
+    CONTACT_TABLE_NAME: contact
+    # Option 1: Use environment variables (recommended - set before deployment)
+    RAZORPAY_TEST_KEY_ID: ${env:RAZORPAY_TEST_KEY_ID}
+    RAZORPAY_TEST_KEY_SECRET: ${env:RAZORPAY_TEST_KEY_SECRET}
+    # Option 2: Hardcode values directly (replace lines above with):
+    # RAZORPAY_TEST_KEY_ID: "rzp_test_your_actual_key_id_here"
+    # RAZORPAY_TEST_KEY_SECRET: "your_actual_secret_key_here"
 
   iam:
     role:
