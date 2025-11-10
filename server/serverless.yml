@@ -14,6 +14,7 @@ provider:
         - https://www.falseninejersey.shop
         - https://falseninejersey.shop
         - http://localhost:3000
+        - https://falsenine-ggs.vercel.app
       allowedMethods:
         - GET
         - POST

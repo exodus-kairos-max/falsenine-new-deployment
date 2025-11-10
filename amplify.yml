@@ -1,0 +1,37 @@
+version: 1
+frontend:
+  phases:
+    preBuild:
+      commands:
+        # Install dependencies
+        - npm ci
+        # Verify Node.js version
+        - node --version
+        - npm --version
+    build:
+      commands:
+        # Build the Next.js application with Turbopack
+        - npm run build
+  artifacts:
+    # Output directory for Next.js standalone build
+    baseDirectory: .next
+    files:
+      - '**/*'
+  cache:
+    paths:
+      # Cache node_modules for faster builds
+      - node_modules/**/*
+      # Cache Next.js build cache
+      - .next/cache/**/*
+  
+  # Environment variables (configure in Amplify Console)
+  # These will be set in the AWS Console, not in this file
+  
+# Enable SSR compute for Next.js
+compute:
+  # Use AWS Lambda for SSR rendering
+  runtime: nodejs20
+  # Memory allocation for Lambda (512MB - 10240MB)
+  memory: 2048
+  # Timeout in seconds (1-900)
+  timeout: 30
