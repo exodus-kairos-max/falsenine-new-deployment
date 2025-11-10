@@ -1,5 +1,5 @@
 service: falsenine-server
-frameworkVersion: "3"
+frameworkVersion: "4"
 
 provider:
   name: aws
