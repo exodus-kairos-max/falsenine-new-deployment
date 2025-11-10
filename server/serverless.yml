@@ -23,6 +23,7 @@ provider:
       allowedHeaders:
         - Content-Type
         - Authorization
+      allowCredentials: true
   environment:
     DYNAMODB_TABLE_NAME: EcommerceData
     CONTACT_TABLE_NAME: contact
@@ -49,7 +50,13 @@ functions:
   api:
     handler: dist/handler.handler
     events:
-      - httpApi: "*"
+      # CRITICAL FIX: Properly configure all routes
+      - httpApi:
+          path: /
+          method: ANY
+      - httpApi:
+          path: /{proxy+}
+          method: ANY
 
 package:
   patterns:
